@@ -7,6 +7,7 @@ local CoolUtil = require "funkin.backend.util.CoolUtil"
 local FlxMath = require "interspecies-flixel.math.FlxMath"
 local PlaceholderStrumline = require "funkin.gameplay.notes.PlaceholderStrumline"
 
+---@class FunkinPlayState : FunkinMusicBeatState
 local PlayState = MusicBeatState:extend("PlayState")
 
 local songs = {}
@@ -17,6 +18,7 @@ function PlayState:init()
     self.conductor.songPosition = self.conductor.crochet * -5
 end
 
+---@type FunkinScript
 local script = Script(Paths.getFile("scripts/test.lua"))
 
 local opponentStrumline
@@ -25,19 +27,33 @@ local playerStrumline
 function PlayState:create()
     script:call("create")
 
+    ---@type FunkinPlaceholderStrumline[]
+    self.strumLines = {}
+
     opponentStrumline = PlaceholderStrumline(PlayState.SONG, "opponent")
     playerStrumline = PlaceholderStrumline(PlayState.SONG, "player")
 
     rawset(opponentStrumline, "x", 96)
+    rawset(opponentStrumline, "keys", {})
+
     rawset(playerStrumline, "x", (FlxG.width / 2) + 96)
+
+    table.insert(self.strumLines, opponentStrumline)
+    table.insert(self.strumLines, playerStrumline)
 
     PlayState.super.create()
     script:call("createPost")
+
+    print(FlxG.VERSION:toString())
 end
 
 local cameraZoom = 1
 
 function PlayState:update(dt)
+    for _,strumLine in pairs(self.strumLines) do
+        strumLine:update(dt)
+    end
+
     if love.keyboard.isDown("space") then
         FlxG.switchState(require "funkin.states.TestState")
     end

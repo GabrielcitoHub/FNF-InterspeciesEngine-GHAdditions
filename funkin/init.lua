@@ -5,9 +5,13 @@ local FlxColor = require "interspecies-flixel.util.FlxColor"
 local PlayState = require "funkin.states.PlayState"
 local ChartParser = require "funkin.backend.chartparser.ChartParser"
 
+---@class Funkin
 local funkin = {}
+
+---@type FunkinFPSCounter
 funkin.fpsCounter = FPSCounter()
 
+---@type FlxGame
 local game
 
 function funkin.load()
@@ -19,6 +23,8 @@ function funkin.load()
     end
 
 	PlayState.SONG = ChartParser.parseSong("monster", "hard")
+
+	
     game = FlxGame(1280, 720, PlayState())
 	game.enableScissor = (love.system.getOS() ~= "Android" or love.system.getOS() ~= "iOS")
 end
