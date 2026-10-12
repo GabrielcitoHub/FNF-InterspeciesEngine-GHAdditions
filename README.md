@@ -39,6 +39,9 @@ Other planned features are:
 These links are the references the engine is going to use.
 
 [Friday Night Funkin' Code - Last Commit on April 18, 2021](https://github.com/FunkinCrew/Funkin/tree/56cbb276fa1f94d3641dfe7affe6e56b3ada784a)
+
 [Friday Night Funkin' Assets - Last Commit on April 18, 2021](https://github.com/FunkinCrew/funkin.assets/tree/6e5f52f1b4dad2588d64b4af8229a6e90de66ea4)
+
 [AngelWyvern's Reverse Engineered Code](https://github.com/AngelWyvern/FNF-NewgroundsPort)
+
 [HaxeFlixel v4.9.0](https://github.com/HaxeFlixel/flixel/tree/4.9.0)
